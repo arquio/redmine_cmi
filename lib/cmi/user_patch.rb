@@ -57,7 +57,7 @@ module CMI
         else
           Rails::logger.info "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ LA FECHA SOLICITADA ES < QUE LA ACTUAL"
           hup = HistoryUserProfile.find(:first, :conditions => ["user_id = ? AND DATE(created_on) <= ? AND (finished_on IS NULL OR finished_on >= ?)", self.id, date, date], :order => "created_on DESC", :select => :profile)
-          Rails::logger.info "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ EL PERFIL CORRESPONDIENTE PARA LA FECHA SOLICITADA ES: "+hup[:profile].inspect
+          Rails::logger.info "@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ EL PERFIL CORRESPONDIENTE PARA LA FECHA SOLICITADA ES: "+hup.inspect
           if hup.present?
             hup.profile
           else
