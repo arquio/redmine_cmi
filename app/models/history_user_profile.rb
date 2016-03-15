@@ -9,10 +9,10 @@ class HistoryUserProfile < ActiveRecord::Base
   belongs_to :user
 
   before_validation :set_created_on, :if => Proc.new {|hup| hup.created_on.nil? }
-  after_save :update_time_entries
   after_save :update_profile_custom_field
-  after_destroy :update_time_entries
+  after_save :update_time_entries
   after_destroy :update_profile_custom_field
+  after_destroy :update_time_entries
 
   def avoid_overlapping
     end_date = self.finished_on.present? ? self.finished_on : DateTime.now
